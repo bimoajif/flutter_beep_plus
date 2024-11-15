@@ -1,16 +1,14 @@
-# flutter_beep_plus_example
+# flutter_beep_plus Example
 
 Demonstrates how to use the flutter_beep_plus plugin.
+```dart
+import 'package:flutter_beep/flutter_beep.dart';
 
-## Getting Started
+final _flutterBeepPlusPlugin = FlutterBeepPlus();
 
-This project is a starting point for a Flutter application.
+ElevatedButton(
+    onPressed: ()=> _flutterBeepPlusPlugin.playSysSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT),
+    child: Text("Beep Android Custom"), 
+);
+```
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
