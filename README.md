@@ -1,5 +1,12 @@
 # flutter_beep_plus
-A very lite module to play system sounds and beep for flutter apps (no sound files)
+A fork to [flutter_beep](https://pub.dev/packages/flutter_beep) plugin. A very lite module to play system sounds and beep for flutter apps (no sound files).
+
+|             | Android | iOS   | Linux | macOS  | Web | Windows     |
+|-------------|---------|-------|-------|--------|-----|-------------|
+| **Support** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+
+# Usage
 ```dart
 import 'package:flutter_beep/flutter_beep.dart';
 

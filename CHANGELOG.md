@@ -9,3 +9,9 @@
 * Fix example app.
 * Add stopSysSound to android.
 
+
+## 0.0.3
+
+* Solve merge conflict.
+* Add license
+* Fix README.md
