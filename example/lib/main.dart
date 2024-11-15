@@ -19,23 +19,32 @@ class _MyAppState extends State<MyApp> {
   final _flutterBeepPlusPlugin = FlutterBeepPlus();
 
   List<AndroidSoundID> sounds = [];
+  AndroidSoundID selectedId = AndroidSoundID.TONE_CDMA_ABBR_ALERT;
 
   @override
   void initState() {
+    sounds = AndroidSoundID.values;
     super.initState();
-
-    initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  Future<void> playSound(AndroidSoundID soundId) async {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
+    try {
+      await _flutterBeepPlusPlugin.playSysSound(soundId);
+    } on PlatformException {
+      'Failed to play system sound.';
+    }
+  }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+  Future<void> stopSound() async {
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    // We also handle the message potentially returning null.
+    try {
+      await _flutterBeepPlusPlugin.stopSysSound();
+    } on PlatformException {
+      'Failed to play system sound.';
+    }
   }
 
   @override
@@ -43,23 +52,40 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Flutter Beep Plus Example'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      await _flutterBeepPlusPlugin
-                          .playSystemSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT);
-                    } on PlatformException {
-                      'Failed to play system sound.';
-                    }
-                  },
-                  child: const Text("play sound"))
-            ],
-          ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text("Select Sound ID:"),
+            DropdownButton(
+                isExpanded: true,
+                value: selectedId,
+                items: sounds.map((v) {
+                  return DropdownMenuItem(
+                    value: v,
+                    child: Text(v.name.toString()),
+                  );
+                }).toList(),
+                onChanged: (v) {
+                  setState(() {
+                    selectedId = v!;
+                  });
+                }),
+            ElevatedButton(
+              onPressed: () {
+                playSound(selectedId);
+              },
+              child: const Text("Play Sound"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                stopSound();
+              },
+              child: const Text("Stop Sound"),
+            )
+          ],
         ),
       ),
     );

@@ -8,7 +8,10 @@ class MockFlutterBeepPlusPlatform
     with MockPlatformInterfaceMixin
     implements FlutterBeepPlusPlatform {
   @override
-  Future<bool?> playSystemSound(int soundId) => Future.value(true);
+  Future<bool?> playSysSound(int soundId) => Future.value(true);
+
+  @override
+  Future<bool?> stopSysSound() => Future.value(true);
 }
 
 void main() {
@@ -26,7 +29,15 @@ void main() {
 
     expect(
         await flutterBeepPlusPlugin
-            .playSystemSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT),
+            .playSysSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT),
         true);
+  });
+
+  test('stopSysSound', () async {
+    FlutterBeepPlus flutterBeepPlusPlugin = FlutterBeepPlus();
+    MockFlutterBeepPlusPlatform fakePlatform = MockFlutterBeepPlusPlatform();
+    FlutterBeepPlusPlatform.instance = fakePlatform;
+
+    expect(await flutterBeepPlusPlugin.stopSysSound(), true);
   });
 }

@@ -24,6 +24,10 @@ void main() {
   });
 
   test('playSysSoundTest', () async {
-    expect(await platform.playSystemSound(24), true);
+    expect(await platform.playSysSound(24), true);
+  });
+
+  test('stopSysSoundTest', () async {
+    expect(await platform.stopSysSound(), true);
   });
 }

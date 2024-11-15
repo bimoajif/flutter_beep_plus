@@ -1,6 +1,6 @@
 name: flutter_beep_plus
 description: "A fork tp flutter_beep plugin. A very lite module to play system sounds and beep for flutter apps (no sound files)."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/bimoajif/flutter_beep_plus
 
 environment:

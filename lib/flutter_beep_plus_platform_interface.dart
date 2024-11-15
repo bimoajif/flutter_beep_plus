@@ -23,7 +23,11 @@ abstract class FlutterBeepPlusPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool?> playSystemSound(int soundId) {
-    throw UnimplementedError('playSystemSound() has not been implemented.');
+  Future<bool?> playSysSound(int soundId) {
+    throw UnimplementedError('playSysSound() has not been implemented.');
+  }
+
+  Future<bool?> stopSysSound() {
+    throw UnimplementedError('stopSysSound() has not been implemented.');
   }
 }

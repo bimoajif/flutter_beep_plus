@@ -17,7 +17,15 @@ void main() {
   testWidgets('playSysSound test', (WidgetTester tester) async {
     final FlutterBeepPlus plugin = FlutterBeepPlus();
     final bool? response =
-        await plugin.playSystemSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT);
+        await plugin.playSysSound(AndroidSoundID.TONE_CDMA_ABBR_ALERT);
+    // The version string depends on the host platform running the test, so
+    // just assert that some non-empty string is returned.
+    expect(response, true);
+  });
+
+  testWidgets('stopSysSound test', (WidgetTester tester) async {
+    final FlutterBeepPlus plugin = FlutterBeepPlus();
+    final bool? response = await plugin.stopSysSound();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
     expect(response, true);

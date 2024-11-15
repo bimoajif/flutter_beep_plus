@@ -9,9 +9,15 @@ class MethodChannelFlutterBeepPlus extends FlutterBeepPlusPlatform {
   @visibleForTesting
   final methodChannel = const MethodChannel('flutter_beep_plus');
   @override
-  Future<bool?> playSystemSound(int soundId) async {
+  Future<bool?> playSysSound(int soundId) async {
     final response =
         await methodChannel.invokeMethod('playSysSound', {"soundId": soundId});
+    return response;
+  }
+
+  @override
+  Future<bool?> stopSysSound() async {
+    final response = await methodChannel.invokeMethod('stopSysSound');
     return response;
   }
 }
